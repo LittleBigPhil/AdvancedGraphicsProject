@@ -186,6 +186,10 @@ public class TreeInterpreter : MonoBehaviour
         mesh.RecalculateNormals();
         mesh.RecalculateTangents();
         GetComponent<MeshFilter>().mesh = mesh;
+        var collider = GetComponent<MeshCollider>();
+        if (collider) {
+            collider.sharedMesh = mesh;
+        }
         if (SaveMesh)
         {
             AssetDatabase.CreateAsset(mesh, "Assets/Meshes/" + gameObject.name + gameObject.GetInstanceID() + ".asset");
