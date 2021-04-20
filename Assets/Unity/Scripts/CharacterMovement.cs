@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CharacterMovement : MonoBehaviour
 {
     public float Speed = .2f;
+    public float RunSpeedMultiplier = 2f;
     public float Gravity = 10f;
     public float MouseSensitivityX = 3f;
     public float MouseSensitivityY = 3f;
@@ -31,7 +32,8 @@ public class CharacterMovement : MonoBehaviour
         var v = Input.GetAxis("Vertical");
         var h = Input.GetAxis("Horizontal");
         var walking = Speed * (transform.forward * v + transform.right * h).normalized;
-        controller.Move(Time.fixedDeltaTime * (walking + Vector3.down * Gravity));
+        var movement = walking * (Input.GetKey(KeyCode.LeftShift) ? RunSpeedMultiplier : 1f);
+        controller.Move(Time.fixedDeltaTime * (movement + Vector3.down * Gravity));
 
 
     }
