@@ -190,10 +190,12 @@ public class TreeInterpreter : MonoBehaviour
         if (collider) {
             collider.sharedMesh = mesh;
         }
+#if UNITY_EDITOR
         if (SaveMesh)
         {
             AssetDatabase.CreateAsset(mesh, "Assets/Meshes/" + gameObject.name + gameObject.GetInstanceID() + ".asset");
         }
+#endif
     }
 
     private void DrawLine(Vector3 direction)
